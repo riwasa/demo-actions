@@ -1,1 +1,6 @@
+name: vm-deploy
 
+on: workflow-dispatch
+
+jobs:
+  
