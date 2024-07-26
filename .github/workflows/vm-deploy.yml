@@ -3,4 +3,20 @@ name: vm-deploy
 on: workflow-dispatch
 
 jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+
+      - name: Get resource group
+        uses: azure/powershell@v1
+        with:
+          inlineScript: Get-AzResourceGroup -Name "riw-demo-actions-rg"
+          azPSVersion: "latest"
   
